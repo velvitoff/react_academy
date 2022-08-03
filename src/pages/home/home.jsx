@@ -2,6 +2,8 @@ import React from 'react';
 
 export default function Home(props){
     return(
-        <p>Home</p>
+        <div>
+            <p>Home</p>
+        </div>
     );
 }
