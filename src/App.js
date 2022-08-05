@@ -1,33 +1,34 @@
 import React from 'react';
 import './App.css';
-import {
-  Routes,
-  Route,
-} from "react-router-dom";
+import { useSelector } from 'react-redux';
 import Container from '@mui/material/Box';
-import Home from './pages/home/home';
-import Posts from './pages/posts/posts';
-import NavBar from './components/navbar';
-import { PATHS } from './utils/constants/paths';
+import { ThemeProvider } from '@mui/system';
+import { CssBaseline } from '@mui/material';
+
+
+import NavBar from './components/navbar/navBar';
+import { themes } from './utils/constants/customThemes';
+import RoutesComponent from './routes';
+
 
 export default function App() {
 
+  const themeText = useSelector(state => state.user.theme);
+  const theme = themes[themeText] || themes.default
+
   return (
-    <>
-      <NavBar />
+    <ThemeProvider theme={theme}>
+      <CssBaseline>
 
-      <Container
-        sx={{marginTop:'70px'}}
-      >
-        <Routes>
+        <NavBar />
 
-          <Route exact path={PATHS.root} element={<Home />} />
-          <Route path={PATHS.posts} element={<Posts />} />
+        <Container sx={{ marginTop: '70px' }}>
+          <RoutesComponent />
+        </Container>
 
-        </Routes>
-      </Container>
+      </CssBaseline>
 
-    </>
+    </ThemeProvider>
   );
 }
 
