@@ -2,13 +2,12 @@ import React from 'react';
 
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 import CustomLogo from './customLogo';
 import NavList from './navList';
 import ProfilePicture from './profilePicture';
+import ThemeSwitch from './themeSwitch';
 
 export default function NavBar(props) {
 
@@ -23,6 +22,7 @@ export default function NavBar(props) {
 
           <CustomLogo />
           <NavList />
+          <ThemeSwitch />
           <ProfilePicture />
 
         </Toolbar>

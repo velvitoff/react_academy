@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { useSelector } from 'react-redux';
+
 import Container from '@mui/material/Box';
 import { ThemeProvider } from '@mui/system';
 import { CssBaseline } from '@mui/material';
@@ -18,7 +19,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline>
+      <CssBaseline enableColorScheme>
 
         <NavBar />
 

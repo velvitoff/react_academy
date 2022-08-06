@@ -1,4 +1,6 @@
 import React from 'react';
+
+import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import LogoDevIcon from '@mui/icons-material/LogoDev';
@@ -7,10 +9,13 @@ import Box from '@mui/material/Box';
 import { PATHS } from '../../utils/constants/paths';
 
 export default function CustomLogo() {
+
+    const theme = useTheme();
+
     return (
         <Box style={{display:'flex', flexDirection:'row', alignItems: 'center'}}>
             <IconButton href={PATHS.root} style={{ backgroundColor: 'transparent' }}>
-                <LogoDevIcon fontSize="large" sx={{ color: "#FFFFFF", display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                <LogoDevIcon fontSize="large" sx={{ color: theme.palette.background.default, display: { xs: 'none', md: 'flex' }, mr: 1 }} />
             </IconButton>
             <Typography
                 variant="h6"
