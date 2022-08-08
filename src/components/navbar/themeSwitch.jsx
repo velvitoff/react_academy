@@ -12,7 +12,7 @@ import { switchThemeToDark, switchThemeToLight } from '../../store/slices/userSl
 
 export default function ThemeSwitch() {
 
-    const themeText = useSelector(state => state.user.theme);
+    const userTheme = useSelector(state => state.user.theme);
     const theme = useTheme();
     const dispatch = useDispatch();
 
@@ -26,15 +26,15 @@ export default function ThemeSwitch() {
     }
 
     return (
-        <Box sx={{ flexGrow: 0.02 }}>
-            {themeText === 'light' &&
+        <Box sx={{ flexGrow: 0, marginRight: 4 }}>
+            {userTheme === 'light' &&
                 <IconButton onClick={handleDarkSwitch}>
-                    <LightModeIcon sx={{color: theme.palette.primary.contrastText}}/>
+                    <LightModeIcon sx={{color: theme.palette.primary.iconColor}}/>
                 </IconButton>
             }
-            {themeText === 'dark' &&
+            {userTheme === 'dark' &&
                 <IconButton onClick={handleLightSwitch}>
-                    <DarkModeIcon sx={{color: theme.palette.primary.contrastText}} />
+                    <DarkModeIcon sx={{color: theme.palette.primary.iconColor}} />
                 </IconButton>
             }
         </Box>

@@ -4,15 +4,15 @@ import {
     Route,
 } from "react-router-dom";
 
-import Home from './pages/home/home';
-import Posts from './pages/posts/posts';
-import { PATHS } from './utils/constants/paths';
+import Home from './pages/home';
+import Posts from './pages/posts';
+import { PATH } from './utils/constants/path';
 
 export default function RoutesComponent() {
     return (
         <Routes>
-            <Route exact path={PATHS.root} element={<Home />} />
-            <Route path={PATHS.posts} element={<Posts />} />
+            <Route exact path={PATH.ROOT} element={<Home />} />
+            <Route path={PATH.POSTS} element={<Posts />} />
         </Routes>
     );
 }

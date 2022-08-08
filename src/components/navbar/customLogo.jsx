@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
@@ -6,22 +7,23 @@ import IconButton from '@mui/material/IconButton';
 import LogoDevIcon from '@mui/icons-material/LogoDev';
 import Box from '@mui/material/Box';
 
-import { PATHS } from '../../utils/constants/paths';
+import { PATH } from '../../utils/constants/path';
 
 export default function CustomLogo() {
 
     const theme = useTheme();
 
     return (
-        <Box style={{display:'flex', flexDirection:'row', alignItems: 'center'}}>
-            <IconButton href={PATHS.root} style={{ backgroundColor: 'transparent' }}>
-                <LogoDevIcon fontSize="large" sx={{ color: theme.palette.background.default, display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-            </IconButton>
+        <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+            <Link to={PATH.ROOT}>
+                <IconButton style={{ backgroundColor: 'transparent' }}>
+                    <LogoDevIcon fontSize="large" sx={{ color: theme.palette.primary.iconColor, display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                </IconButton>
+            </Link>
             <Typography
                 variant="h6"
                 noWrap
                 component="a"
-                href="/"
                 sx={{
                     mr: 2,
                     display: { xs: 'none', md: 'flex' },
@@ -32,17 +34,20 @@ export default function CustomLogo() {
                     textDecoration: 'none',
                 }}
             >
-                BLOG
+                <Link to={PATH.ROOT} style={{ textDecoration: 'none', color: theme.palette.primary.contrastText }}>BLOG</Link>
             </Typography>
 
 
 
-            <LogoDevIcon fontSize="large" sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+            <Link to={PATH.ROOT}>
+                <IconButton style={{ backgroundColor: 'transparent' }}>
+                    <LogoDevIcon fontSize="large" sx={{ color: theme.palette.primary.iconColor, display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                </IconButton>
+            </Link>
             <Typography
                 variant="h5"
                 noWrap
                 component="a"
-                href="/"
                 sx={{
                     mr: 2,
                     display: { xs: 'flex', md: 'none' },
@@ -54,7 +59,7 @@ export default function CustomLogo() {
                     textDecoration: 'none',
                 }}
             >
-                BLOG
+                <Link to={PATH.ROOT} style={{ textDecoration: 'none', color: theme.palette.primary.contrastText }}>BLOG</Link>
             </Typography>
 
         </Box>

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     theme: 'light',
-    lang: 'English'
+    language: 'English'
 };
 
 export const userSlice = createSlice({
@@ -21,8 +21,8 @@ export const userSlice = createSlice({
             else if (state.theme === 'dark')
                 state.theme = 'light'
         },
-        setLang: (state, action) => {
-            state.lang = action.payload
+        setLanguage: (state, action) => {
+            state.language = action.payload
         }
     }
 });
@@ -31,7 +31,7 @@ export const {
     switchThemeToLight,
     switchThemeToDark,
     switchThemeToOpposite,
-    setLang
+    setLanguage
 } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -7,7 +7,7 @@ export default function Home(){
     const theme = useTheme();
 
     return(
-        <Box sx={{backgroundColor: theme.palette.primary.contrastText}}>
+        <Box sx={{backgroundColor: theme.palette.background.default}}>
             <p>Home</p>
         </Box>
     );
