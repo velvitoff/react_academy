@@ -19,13 +19,12 @@ export default function App() {
 
   const themeSelector = createSelector(
     state => state.userSettings.theme,
-    theme => theme
+    themeName => themes[themeName] || themes.default
   );
 
   const WrappedApp = () => {
 
-    const userTheme = useSelector(themeSelector);
-    const theme = themes[userTheme] || themes.default
+    const theme = useSelector(themeSelector);
 
     return (
       <ThemeProvider theme={theme}>
