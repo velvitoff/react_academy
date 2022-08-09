@@ -5,8 +5,8 @@ const initialState = {
     language: 'English'
 };
 
-export const userSlice = createSlice({
-    name: 'user',
+export const userSettingsSlice = createSlice({
+    name: 'userSettings',
     initialState,
     reducers: {
         switchThemeToLight: (state) => {
@@ -32,6 +32,6 @@ export const {
     switchThemeToDark,
     switchThemeToOpposite,
     setLanguage
-} = userSlice.actions;
+} = userSettingsSlice.actions;
 
-export default userSlice.reducer;
+export default userSettingsSlice.reducer;

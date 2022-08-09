@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { createSelector } from '@reduxjs/toolkit';
 import { useTheme } from '@mui/material/styles';
 
 import Box from '@mui/material/Box';
@@ -7,12 +8,16 @@ import IconButton from '@mui/material/IconButton';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 
-import { switchThemeToDark, switchThemeToLight } from '../../store/slices/userSlice';
+import { switchThemeToDark, switchThemeToLight } from '../../store/slices/userSettingsSlice';
 
+const themeSelector = createSelector(
+    state => state.userSettings.theme,
+    theme => theme
+  );
 
 export default function ThemeSwitch() {
 
-    const userTheme = useSelector(state => state.user.theme);
+    const userTheme = useSelector(themeSelector);
     const theme = useTheme();
     const dispatch = useDispatch();
 

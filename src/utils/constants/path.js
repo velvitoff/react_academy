@@ -1,4 +1,4 @@
-export const PATH = {
+export const path = {
     ROOT: '/',
     POSTS: '/posts'
 }

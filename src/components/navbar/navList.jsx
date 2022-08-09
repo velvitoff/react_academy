@@ -9,10 +9,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 
-import { PATH } from '../../utils/constants/path';
+import { path } from '../../utils/constants/path';
 
 const pageList = [
-  ["Posts", PATH.POSTS]
+  {title: "Posts", link: path.POSTS}
 ];
 
 export default function NavList() {
@@ -28,14 +28,6 @@ export default function NavList() {
     setAnchorElNav(null);
   };
 
-  /*
-  <Button
-              href={pagePair[1]}
-              key={pagePair[0]}
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-  */
   return (
     <>
       <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -64,14 +56,14 @@ export default function NavList() {
             display: { xs: 'block', md: 'none' },
           }}
         >
-          {pageList.map((pagePair) => (
-            <MenuItem key={pagePair[0]} onClick={handleCloseNavMenu}>
-              <Link to={pagePair[1]} style={{ textDecoration: 'none' }}>
+          {pageList.map((page) => (
+            <MenuItem key={page.title} onClick={handleCloseNavMenu}>
+              <Link to={page.link} style={{ textDecoration: 'none' }}>
                 <Typography
                   textAlign="center"
                   sx={{ color: theme.palette.text.primary }}
                 >
-                  {pagePair[0]}
+                  {page.title}
                 </Typography>
               </Link>
             </MenuItem>
@@ -79,16 +71,15 @@ export default function NavList() {
         </Menu>
       </Box>
 
-
       <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-        {pageList.map((pagePair) => (
+        {pageList.map((page) => (
           <Link
-            to={pagePair[1]}
-            key={pagePair[0]}
+            to={page.link}
+            key={page.title}
             style={{ textDecoration: 'none' }}
           >
             <Typography variant="h6" sx={{ color: theme.palette.primary.contrastText }}>
-              {pagePair[0]}
+              {page.title}
             </Typography>
           </Link>
         ))}

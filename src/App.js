@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import { useSelector } from 'react-redux';
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux';
+import { createSelector } from '@reduxjs/toolkit';
 import { BrowserRouter } from "react-router-dom";
 
 import Container from '@mui/material/Box';
@@ -17,11 +17,15 @@ import store from './store';
 
 export default function App() {
 
+  const themeSelector = createSelector(
+    state => state.userSettings.theme,
+    theme => theme
+  );
 
   const WrappedApp = () => {
 
-    const themeText = useSelector(state => state.user.theme);
-    const theme = themes[themeText] || themes.default
+    const userTheme = useSelector(themeSelector);
+    const theme = themes[userTheme] || themes.default
 
     return (
       <ThemeProvider theme={theme}>
