@@ -12,7 +12,7 @@ import Box from '@mui/material/Box';
 import { path } from '../../utils/constants/path';
 
 const pageList = [
-  {title: "Posts", link: path.POSTS}
+  { title: "Posts", link: path.POSTS }
 ];
 
 export default function NavList() {
@@ -30,7 +30,7 @@ export default function NavList() {
 
   return (
     <>
-      <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+      <Box sx={{display: { xs: 'flex', md: 'none' } }}>
         <IconButton
           size="large"
           onClick={handleOpenNavMenu}
@@ -41,20 +41,12 @@ export default function NavList() {
         <Menu
           id="menu-appbar"
           anchorEl={anchorElNav}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
           keepMounted
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
+          transformOrigin={{ vertical: 'top', horizontal: 'left' }}
           open={Boolean(anchorElNav)}
           onClose={handleCloseNavMenu}
-          sx={{
-            display: { xs: 'block', md: 'none' },
-          }}
+          sx={{ display: { xs: 'block', md: 'none' } }}
         >
           {pageList.map((page) => (
             <MenuItem key={page.title} onClick={handleCloseNavMenu}>
@@ -71,7 +63,7 @@ export default function NavList() {
         </Menu>
       </Box>
 
-      <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+      <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
         {pageList.map((page) => (
           <Link
             to={page.link}

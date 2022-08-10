@@ -3,32 +3,29 @@ import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
+import Box from '@mui/system/Box';
 
-import CustomLogo from './customLogo';
+import DevBlogLogo from './devBlogLogo';
 import NavList from './navList';
 import ProfilePicture from './profilePicture';
 import ThemeSwitch from './themeSwitch';
 
 export default function NavBar(props) {
 
+  //couldn't achieve the desired positioning using stack
   return (
-    <AppBar
-      sx={{
-        height: 70
-      }}
-    >
+    <AppBar sx={{ height: 70 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
 
-          <CustomLogo />
-          <NavList />
+          <DevBlogLogo />
+          <Box sx={{ ml: 3, flexGrow: 1 }}> <NavList /> </Box>
           <ThemeSwitch />
-          <ProfilePicture />
+          <Box sx={{ ml: 3 }}> <ProfilePicture /> </Box>
 
         </Toolbar>
       </Container>
 
     </AppBar>
   );
-
 }

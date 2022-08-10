@@ -1,14 +1,12 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import { useTheme } from '@mui/material/styles';
+
+import StyledHome from './styledHome';
 
 export default function Home(){
 
-    const theme = useTheme();
-
     return(
-        <Box sx={{backgroundColor: theme.palette.background.default}}>
+        <StyledHome>
             <p>Home</p>
-        </Box>
+        </StyledHome>
     );
 }

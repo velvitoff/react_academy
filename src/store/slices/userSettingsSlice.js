@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { themeTokens } from '../../utils/theme/themeTokens';
 
 const initialState = {
     theme: 'light',
@@ -33,5 +34,10 @@ export const {
     switchThemeToOpposite,
     setLanguage
 } = userSettingsSlice.actions;
+
+export const selectTheme = createSelector(
+    state => state.userSettings.theme,
+    themeName => themeTokens[themeName] || themeTokens.default
+  );
 
 export default userSettingsSlice.reducer;
