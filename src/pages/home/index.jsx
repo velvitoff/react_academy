@@ -1,12 +1,12 @@
 import React from 'react';
 
-import StyledHome from './styledHome';
+import StyledHomeBox from './styledHomeBox';
 
 export default function Home(){
 
     return(
-        <StyledHome>
+        <StyledHomeBox>
             <p>Home</p>
-        </StyledHome>
+        </StyledHomeBox>
     );
 }

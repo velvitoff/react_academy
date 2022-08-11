@@ -2,14 +2,14 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { ThemeProvider } from '@mui/system';
 
-import { selectTheme } from '../../store/slices/userSettingsSlice';
+import { selectThemeObject } from '../../store/slices/userSettingsSlice';
 
-export default function UserSettingsProvider({ child }){
-    const theme = useSelector(selectTheme);
+export default function UserSettingsProvider({ children }){
+    const theme = useSelector(selectThemeObject);
 
     return(
         <ThemeProvider theme={theme}>
-            {child}
+            {children}
         </ThemeProvider>
     );
 }

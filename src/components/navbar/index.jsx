@@ -12,7 +12,6 @@ import ThemeSwitch from './themeSwitch';
 
 export default function NavBar(props) {
 
-  //couldn't achieve the desired positioning using stack
   return (
     <AppBar sx={{ height: 70 }}>
       <Container maxWidth="xl">

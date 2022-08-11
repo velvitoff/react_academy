@@ -12,7 +12,9 @@ export default function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <UserSettingsProvider child={<GeneralAppLayout />} />
+        <UserSettingsProvider>
+          <GeneralAppLayout />
+        </UserSettingsProvider>
       </BrowserRouter>
     </Provider>
   );

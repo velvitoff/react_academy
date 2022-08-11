@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useTheme } from '@mui/material/styles';
+import { useDispatch, useSelector } from 'react-redux';
 import IconButton from '@mui/material/IconButton';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+
 import { switchThemeToDark, switchThemeToLight } from '../../store/slices/userSettingsSlice';
+import { selectThemeObject } from '../../store/slices/userSettingsSlice';
 
 export default function ThemeSwitch() {
 
-    const theme = useTheme();
+    const theme = useSelector(selectThemeObject);
     const dispatch = useDispatch();
     const [checked, setChecked] = useState(false);
 

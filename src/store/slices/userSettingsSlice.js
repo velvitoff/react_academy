@@ -35,9 +35,11 @@ export const {
     setLanguage
 } = userSettingsSlice.actions;
 
-export const selectTheme = createSelector(
+export const selectThemeName = state => state.userSettings.theme;
+
+export const selectThemeObject = createSelector(
     state => state.userSettings.theme,
     themeName => themeTokens[themeName] || themeTokens.default
-  );
+);
 
 export default userSettingsSlice.reducer;
