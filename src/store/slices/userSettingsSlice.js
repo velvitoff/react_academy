@@ -3,7 +3,7 @@ import { themeTokens } from '../../utils/theme/themeTokens';
 
 const initialState = {
     theme: 'light',
-    language: 'English'
+    language: 'en'
 };
 
 export const userSettingsSlice = createSlice({
@@ -36,6 +36,7 @@ export const {
 } = userSettingsSlice.actions;
 
 export const selectThemeName = state => state.userSettings.theme;
+export const selectLanguage = state => state.userSettings.language;
 
 export const selectThemeObject = createSelector(
     state => state.userSettings.theme,

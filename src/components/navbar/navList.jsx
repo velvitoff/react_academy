@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 
 import { path } from '../../utils/constants/path';
+import Localize from '../common/localize';
 
 const pageList = [
   { title: "Posts", link: path.POSTS }
@@ -30,7 +31,7 @@ export default function NavList() {
 
   return (
     <>
-      <Box sx={{display: { xs: 'flex', md: 'none' } }}>
+      <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
         <IconButton
           size="large"
           onClick={handleOpenNavMenu}
@@ -71,7 +72,7 @@ export default function NavList() {
             style={{ textDecoration: 'none' }}
           >
             <Typography variant="h6" sx={{ color: theme.palette.primary.contrastText }}>
-              {page.title}
+              <Localize input={page.title} />
             </Typography>
           </Link>
         ))}

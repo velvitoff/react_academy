@@ -8,7 +8,7 @@ import { switchThemeToDark, switchThemeToLight } from '../../store/slices/userSe
 import { selectThemeObject } from '../../store/slices/userSettingsSlice';
 
 export default function ThemeSwitch() {
-
+    
     const theme = useSelector(selectThemeObject);
     const dispatch = useDispatch();
     const [checked, setChecked] = useState(false);
