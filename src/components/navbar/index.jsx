@@ -9,6 +9,7 @@ import DevBlogLogo from './devBlogLogo';
 import NavList from './navList';
 import ProfilePicture from './profilePicture';
 import ThemeSwitch from './themeSwitch';
+import LanguageDropdown from './languageDropdown';
 
 export default function NavBar(props) {
 
@@ -19,6 +20,7 @@ export default function NavBar(props) {
 
           <DevBlogLogo />
           <Box sx={{ ml: 3, flexGrow: 1 }}> <NavList /> </Box>
+          <LanguageDropdown />
           <ThemeSwitch />
           <Box sx={{ ml: 3 }}> <ProfilePicture /> </Box>
 
