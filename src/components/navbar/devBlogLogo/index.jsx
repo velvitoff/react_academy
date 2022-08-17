@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 
 import StyledTypography from './styledTypography';
-import StyledIcon from './styledIcon';
+import StyledLogoDevIcon from './styledLogoDevIcon';
 import { path } from '../../../utils/constants/path';
 
 export default function DevBlogLogo() {
@@ -13,7 +13,7 @@ export default function DevBlogLogo() {
     return (
         <Stack direction="row" alignItems="center">
             <Link to={path.ROOT}>
-                <StyledIcon fontSize="large" sx={{ mr: 0.5, mt: 1 }} />
+                <StyledLogoDevIcon fontSize="large" sx={{ mr: 0.5, mt: 1 }} />
             </Link>
 
             <StyledTypography variant='h5' noWrap>
