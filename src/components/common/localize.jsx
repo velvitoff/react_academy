@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector } from 'react-redux';
 import { selectLanguage } from '../../store/slices/userSettingsSlice';
-import { translateRequest } from '../../utils/translation/translate';
+import { translateRequest } from '../../services/translationService';
 
 export default function Localize({ input }) {
     const [output, setOutput] = useState(input);

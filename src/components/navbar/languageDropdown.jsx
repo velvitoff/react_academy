@@ -7,7 +7,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
 import { selectLanguageName, selectThemeObject, setLanguage } from '../../store/slices/userSettingsSlice';
-import languageNames from '../../utils/translation/languageNames';
+import languageNames from '../../utils/translation/languageFullNames';
 
 export default function LanguageDropdown() {
 
@@ -24,8 +24,9 @@ export default function LanguageDropdown() {
         setAnchorElNav(null);
     };
 
-    const handleLanguageChange = (newLanguage) => {
-        dispatch(setLanguage(newLanguage));
+    const handleLanguageChoice = event => {
+        handleCloseNavMenu();
+        dispatch(setLanguage(event.target.lang));
     }
 
     return (
@@ -45,11 +46,11 @@ export default function LanguageDropdown() {
                 onClose={handleCloseNavMenu}
             >
                 {Object.keys(languageNames).map((language) => (
-                    <MenuItem key={language} onClick={handleCloseNavMenu}>
+                    <MenuItem key={language} onClick={handleLanguageChoice}>
                         <Typography
                             textAlign="center"
                             sx={{ color: theme.palette.text.primary }}
-                            onClick={() => handleLanguageChange(language)}
+                            lang={language}
                         >
                             {languageNames[language]}
                         </Typography>

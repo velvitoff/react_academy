@@ -1,6 +1,6 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 import { themeTokens } from '../../utils/theme/themeTokens';
-import languageNames from '../../utils/translation/languageNames';
+import languageFullNames from '../../utils/translation/languageFullNames';
 
 const initialState = {
     theme: 'light',
@@ -46,7 +46,7 @@ export const selectThemeObject = createSelector(
 
 export const selectLanguageName = createSelector(
     state => state.userSettings.language,
-    language => languageNames[language] || 'English'
+    language => languageFullNames[language] || 'English'
 );
 
 export default userSettingsSlice.reducer;
