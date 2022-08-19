@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Menu from '@mui/material/Menu';
@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 
 import { path } from '../../utils/constants/path';
+import Localize from '../common/localize';
 
 const pageList = [
   { title: "Posts", link: path.POSTS }
@@ -18,7 +19,7 @@ const pageList = [
 export default function NavList() {
 
   const theme = useTheme();
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -30,7 +31,7 @@ export default function NavList() {
 
   return (
     <>
-      <Box sx={{display: { xs: 'flex', md: 'none' } }}>
+      <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
         <IconButton
           size="large"
           onClick={handleOpenNavMenu}
@@ -71,7 +72,7 @@ export default function NavList() {
             style={{ textDecoration: 'none' }}
           >
             <Typography variant="h6" sx={{ color: theme.palette.primary.contrastText }}>
-              {page.title}
+              <Localize input={page.title} />
             </Typography>
           </Link>
         ))}
