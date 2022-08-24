@@ -27,7 +27,7 @@ export default function NavBar(props) {
           <LanguageDropdown />
           <ThemeSwitch />
           <Box sx={{ ml: 3 }}>
-            {isLoggedIn ? <ProfilePicture /> : /*<div id="signInDiv"></div>*/<GoogleLoginButton/>}
+            {isLoggedIn ? <ProfilePicture /> : <GoogleLoginButton/>}
           </Box>
         </Toolbar>
       </Container>
