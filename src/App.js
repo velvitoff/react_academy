@@ -10,10 +10,10 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 
 export default function App() {
 
-
+  console.log(process.env);
   return (
     <Provider store={store}>
-      <GoogleOAuthProvider clientId="188827934663-74rg170epr01st83bvbd82t9nmcevvjf.apps.googleusercontent.com">
+      <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_APP_CLIENT_ID}>
         <BrowserRouter>
           <UserSettingsProvider>
             <GeneralAppLayout />
