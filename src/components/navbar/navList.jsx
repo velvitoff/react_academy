@@ -56,7 +56,7 @@ export default function NavList() {
                   textAlign="center"
                   sx={{ color: theme.palette.text.primary }}
                 >
-                  {page.title}
+                  <Localize input={page.title} />
                 </Typography>
               </Link>
             </MenuItem>

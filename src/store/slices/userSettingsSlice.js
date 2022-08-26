@@ -4,7 +4,9 @@ import languageFullNames from '../../utils/translation/languageFullNames';
 
 const initialState = {
     theme: 'light',
-    language: 'en'
+    language: 'en',
+    picture: '',
+    isLoggedIn: false
 };
 
 export const userSettingsSlice = createSlice({
@@ -25,6 +27,12 @@ export const userSettingsSlice = createSlice({
         },
         setLanguage: (state, action) => {
             state.language = action.payload
+        },
+        setPicture: (state, action) => {
+            state.picture = action.payload
+        },
+        setIsLoggedIn: (state, action) => {
+            state.isLoggedIn = action.payload
         }
     }
 });
@@ -33,11 +41,15 @@ export const {
     switchThemeToLight,
     switchThemeToDark,
     switchThemeToOpposite,
-    setLanguage
+    setLanguage,
+    setPicture,
+    setIsLoggedIn
 } = userSettingsSlice.actions;
 
 export const selectThemeName = state => state.userSettings.theme;
 export const selectLanguage = state => state.userSettings.language;
+export const selectPicture = state => state.userSettings.picture;
+export const selectIsLoggedIn = state => state.userSettings.isLoggedIn;
 
 export const selectThemeObject = createSelector(
     state => state.userSettings.theme,
