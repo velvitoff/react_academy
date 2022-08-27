@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { selectIsLoggedIn } from '../../store/slices/userSettingsSlice';
 import ProfilePicture from './profilePicture';
-import GoogleLoginButton from '../common/googleLoginButton';
+import GoogleLoginButton from './googleLoginButton';
 
 export default function ProfileControl() {
 
