@@ -14,7 +14,7 @@ export const postsRequest = (blogId) => {
     return axios.get(`${address}/blogs/${blogId}/posts`, {
         params: {
             key: process.env.REACT_APP_BLOGGER_API_KEY,
-            fields: 'kind,items(kind,id,url,title,author,replies)'
+            fields: 'kind,items(kind,id,url,title,author,replies,published,updated)'
         }
     });
 }
