@@ -7,6 +7,15 @@ import store from './store';
 import UserSettingsProvider from './components/common/userSettingsProvider';
 import GeneralAppLayout from './components/common/generalAppLayout';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import axios from 'axios';
+axios.interceptors.request.use(function (config) {
+  // Do something before request is sent
+  console.log('config ' + JSON.stringify(config.headers));
+  return config;
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error);
+});
 
 export default function App() {
 

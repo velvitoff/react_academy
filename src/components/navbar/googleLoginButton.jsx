@@ -1,18 +1,17 @@
 import React from 'react';
-import { GoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
 import { useDispatch } from 'react-redux';
-import jwt_decode from 'jwt-decode';
+import Button from '@mui/material/Button';
 
 import { handleTokenLogIn } from '../../services/authService';
-import { setPicture, setIsLoggedIn } from '../../store/slices/userSettingsSlice';
+import { setIsLoggedIn } from '../../store/slices/userSettingsSlice';
 
 export default function GoogleLoginButton() {
     const dispatch = useDispatch();
 
     const onSuccess = response => {
-        handleTokenLogIn(response);
-        const userObject = jwt_decode(response.credential)
-        dispatch(setPicture(userObject.picture));
+        console.log(response);
+        handleTokenLogIn(response.access_token);
         dispatch(setIsLoggedIn(true));
     };
 
@@ -20,10 +19,17 @@ export default function GoogleLoginButton() {
         console.log('Login Failed');
     }
 
+    const login = useGoogleLogin({
+        onSuccess: onSuccess,
+        onError: onError,
+        flow: 'implicit',
+        scope: "email profile openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/blogger https://www.googleapis.com/auth/blogger.readonly"
+    });
+
+
     return (
-        <GoogleLogin
-            onSuccess={onSuccess}
-            onError={onError}
-        />
+        <Button onClick={login}>
+            
+        </Button>
     );
 }

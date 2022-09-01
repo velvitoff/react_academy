@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 
 import { selectActiveBlogId } from '../../store/slices/bloggerSettingsSlice';
 import PostsList from './postsList';
-import { postsRequest } from './../../services/bloggerService';
+import { blogsRequest, postsRequest } from './../../services/bloggerService';
 
 export default function Posts() {
 
@@ -26,6 +26,14 @@ export default function Posts() {
             .finally(() => {
                 setIsLoading(false);
             })
+
+        blogsRequest()
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
 
     }, [])
 

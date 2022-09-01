@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getAccessTokenWithBearer } from '../services/authService';
 
 const address = 'https://www.googleapis.com/blogger/v3';
 
@@ -17,4 +18,15 @@ export const postsRequest = (blogId) => {
             fields: 'kind,items(kind,id,url,title,author,replies,published,updated)'
         }
     });
+}
+
+export const blogsRequest = () => {
+    return axios.get(`${address}/users/self/blogs`, {
+        params: {
+            key: process.env.REACT_APP_BLOGGER_API_KEY,
+        },
+        headers: {
+            Authorization: getAccessTokenWithBearer()
+        }
+    })
 }

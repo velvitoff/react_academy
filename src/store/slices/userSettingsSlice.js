@@ -1,12 +1,17 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 import { themeTokens } from '../../utils/theme/themeTokens';
 import languageFullNames from '../../utils/translation/languageFullNames';
+import { getAccessToken } from './../../services/authService';
+
+const getIsLoggedIn = () => {
+    const token = getAccessToken();
+    return token !== undefined && token !== null && token !== 'undefined';
+}
 
 const initialState = {
     theme: 'light',
     language: 'en',
-    picture: '',
-    isLoggedIn: false
+    isLoggedIn: getIsLoggedIn()
 };
 
 export const userSettingsSlice = createSlice({
@@ -28,9 +33,6 @@ export const userSettingsSlice = createSlice({
         setLanguage: (state, action) => {
             state.language = action.payload
         },
-        setPicture: (state, action) => {
-            state.picture = action.payload
-        },
         setIsLoggedIn: (state, action) => {
             state.isLoggedIn = action.payload
         }
@@ -42,13 +44,11 @@ export const {
     switchThemeToDark,
     switchThemeToOpposite,
     setLanguage,
-    setPicture,
     setIsLoggedIn
 } = userSettingsSlice.actions;
 
 export const selectThemeName = state => state.userSettings.theme;
 export const selectLanguage = state => state.userSettings.language;
-export const selectPicture = state => state.userSettings.picture;
 export const selectIsLoggedIn = state => state.userSettings.isLoggedIn;
 
 export const selectThemeObject = createSelector(
