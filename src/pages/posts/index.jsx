@@ -59,8 +59,7 @@ export default function Posts() {
             spacing={2.5}
         >
             <Typography variant="h4">
-                <Localize input="Posts for"/>
-                {" " + blogName}
+                <Localize input="Posts for"/> {" " + blogName}
             </Typography>
             {items.map((item) => (
                 <PostDisplay post={item} key={item.id} />

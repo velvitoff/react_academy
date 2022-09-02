@@ -36,10 +36,6 @@ export default function GoogleLoginButton() {
                 alignItems='center' spacing={1}
                 hover="cursor:pointer"
             >
-                <LoginIcon
-                    onClick={login}
-                    sx={{ color: "primary.iconColor" }}
-                />
                 <Typography
                     onClick={login}
                     color="primary.contrastText"

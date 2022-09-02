@@ -6,9 +6,9 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 import Localize from '../../components/common/localize';
+import IconDropdown from './iconDropdown';
 
 export default function PostDisplay({ post }) {
     return (
@@ -21,7 +21,7 @@ export default function PostDisplay({ post }) {
                     <Typography gutterBottom variant="h5" component="div">
                         {post.title}
                     </Typography>
-                    <MoreHorizIcon />
+                    <IconDropdown />
                 </Stack>
 
                 <Stack direction="row" alignItems="center" spacing={1}>
