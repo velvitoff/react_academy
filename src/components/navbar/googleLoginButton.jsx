@@ -1,17 +1,18 @@
 import React from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useDispatch } from 'react-redux';
-import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import LoginIcon from '@mui/icons-material/Login';
 
 import { handleTokenLogIn } from '../../services/authService';
 import { setIsLoggedIn } from '../../store/slices/userSettingsSlice';
+import { ButtonBase } from '@mui/material';
 
 export default function GoogleLoginButton() {
     const dispatch = useDispatch();
 
     const onSuccess = response => {
-        console.log(response);
         handleTokenLogIn(response.access_token);
         dispatch(setIsLoggedIn(true));
     };
@@ -29,10 +30,23 @@ export default function GoogleLoginButton() {
 
 
     return (
-        <Button onClick={login}>
-            <Typography color="primary.contrastText">
-                Log In
-            </Typography>
-        </Button>
+        <ButtonBase>
+            <Stack
+                direction='row'
+                alignItems='center' spacing={1}
+                hover="cursor:pointer"
+            >
+                <LoginIcon
+                    onClick={login}
+                    sx={{ color: "primary.iconColor" }}
+                />
+                <Typography
+                    onClick={login}
+                    color="primary.contrastText"
+                    fontSize="1.3rem">
+                    Log In
+                </Typography>
+            </Stack>
+        </ButtonBase>
     );
 }
