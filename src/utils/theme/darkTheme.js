@@ -6,7 +6,8 @@ const darkTheme = createTheme({
         type: 'dark',
         primary: {
             main: '#282831',
-            iconColor: '#fafafa'
+            iconColor: '#fafafa',
+            contrastText: '#fafafa'
         },
         secondary: {
             main: '#de4747',
@@ -14,6 +15,12 @@ const darkTheme = createTheme({
         background: {
             default: '#303030',
             paper: '#424242',
+        },
+        text: {
+            primary: '#ffffff',
+            secondary: 'rgba(255,255,255,0.7)',
+            appBarContrast: '#fafafa',
+            dropDownContrast: '#fafafa'
         },
     },
 });

@@ -1,46 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 
 import { selectActiveBlogId } from '../../store/slices/bloggerSettingsSlice';
 import PostsList from './postsList';
-import { blogsRequest, postsRequest } from './../../services/bloggerService';
+import BlogsSwitchMenu from './blogsSwitchMenu';
 
 export default function Posts() {
 
     const blogId = useSelector(selectActiveBlogId);
-    const [data, setData] = useState({});
-    const [isLoading, setIsLoading] = useState(true);
-    const [isLoadingError, setIsLoadingError] = useState(false);
-
-    useEffect(() => {
-        setIsLoading(true);
-        postsRequest(blogId)
-            .then((response) => {
-                setData(response.data);
-                setIsLoadingError(false);
-            })
-            .catch((err) => {
-                setIsLoadingError(true);
-            })
-            .finally(() => {
-                setIsLoading(false);
-            })
-
-        blogsRequest()
-        .then((response) => {
-            console.log(response);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-
-    }, [])
 
     return (
-        <Box sx={{ mt: 15 }} >
-            {isLoading ? <p>Loading...</p> : <PostsList items={data.items} />}
-            {isLoadingError && <p>Loading error</p>}
+        <Box sx={{ mt: 15 }} textAlign="center">
+            <BlogsSwitchMenu blogId={blogId}/>
+            <PostsList blogId={blogId} />
         </Box>
     );
 }

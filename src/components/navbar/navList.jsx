@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
@@ -18,7 +17,6 @@ const pageList = [
 
 export default function NavList() {
 
-  const theme = useTheme();
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -54,7 +52,7 @@ export default function NavList() {
               <Link to={page.link} style={{ textDecoration: 'none' }}>
                 <Typography
                   textAlign="center"
-                  sx={{ color: theme.palette.text.primary }}
+                  color="text.dropDownContrast"
                 >
                   <Localize input={page.title} />
                 </Typography>
@@ -71,7 +69,7 @@ export default function NavList() {
             key={page.title}
             style={{ textDecoration: 'none' }}
           >
-            <Typography variant="h6" sx={{ color: theme.palette.primary.contrastText }}>
+            <Typography variant="h6" color="text.appBarContrast">
               <Localize input={page.title} />
             </Typography>
           </Link>

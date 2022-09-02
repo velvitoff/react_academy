@@ -2,6 +2,7 @@ import React from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 import { handleTokenLogIn } from '../../services/authService';
 import { setIsLoggedIn } from '../../store/slices/userSettingsSlice';
@@ -29,7 +30,9 @@ export default function GoogleLoginButton() {
 
     return (
         <Button onClick={login}>
-            
+            <Typography color="primary.contrastText">
+                Log In
+            </Typography>
         </Button>
     );
 }

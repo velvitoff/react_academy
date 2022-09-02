@@ -8,14 +8,14 @@ export const bloggerSettingsSlice = createSlice({
     name: 'bloggerSettings',
     initialState,
     reducers: {
-        switchActiveBlog: (state, action) => {
+        setActiveBlog: (state, action) => {
             state.activeBlog = action.payload
         }
     }
 });
 
 export const {
-    switchActiveBlog
+    setActiveBlog
 } = bloggerSettingsSlice.actions;
 
 export const selectActiveBlogId = state => state.bloggerSettings.activeBlog;
