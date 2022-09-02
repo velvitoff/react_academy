@@ -22,7 +22,7 @@ export default function NavBar() {
           <Box sx={{ ml: 3, flexGrow: 1 }}> <NavList /> </Box>
           <LanguageDropdown />
           <ThemeSwitch />
-          <Box sx={{ ml: 3 }}> <ProfileControl /> </Box>
+          <Box sx={{ ml: 2 }}> <ProfileControl /> </Box>
 
         </Toolbar>
       </Container>

@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
-import MenuIcon from '@mui/icons-material/Menu';
-import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
 
 import { blogsRequest } from '../../services/bloggerService';
-import { selectThemeObject } from '../../store/slices/userSettingsSlice';
 import { setActiveBlog } from '../../store/slices/bloggerSettingsSlice';
+import BlogDisplay from './blogDisplay';
+import { Stack } from '@mui/material';
 
 export default function BlogsSwitchMenu({ blogId }) {
     const dispatch = useDispatch();
-    const theme = useSelector(selectThemeObject);
 
+    const [chosenItem, setChosenItem] = useState({});
     const [items, setItems] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isLoadingError, setIsLoadingError] = useState(false);
@@ -28,13 +26,22 @@ export default function BlogsSwitchMenu({ blogId }) {
         setAnchorElNav(null);
     };
 
+    const handleFetchedItems = (items) => {
+        if (blogId === '') {
+            dispatch(setActiveBlog(items[0].id))
+            //memoize request
+        }
+        else {
+            setChosenItem(items.filter((item) => item.id === blogId)[0]);
+            setItems(items.filter((item) => item !== blogId));
+        }
+    }
 
     useEffect(() => {
         setIsLoading(true);
         blogsRequest()
             .then((response) => {
-                setItems(response.data.items
-                    .filter((item) => item.id !== blogId));
+                handleFetchedItems(response.data.items);
                 setIsLoadingError(false);
             })
             .catch((err) => {
@@ -64,14 +71,11 @@ export default function BlogsSwitchMenu({ blogId }) {
     }
 
     return (
-        <Box>
-            <IconButton
-                size="large"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-            >
-                <MenuIcon />
-            </IconButton>
+        <Stack
+            justifyContent="center"
+            alignItems="center"
+        >
+            <BlogDisplay blogData={chosenItem} onClick={handleOpenNavMenu} />
             <Menu
                 id="menu-appbar"
                 anchorEl={anchorElNav}
@@ -86,13 +90,13 @@ export default function BlogsSwitchMenu({ blogId }) {
                         <Typography
                             onClick={() => changeActiveBlog(item.id)}
                             textAlign="center"
-                            sx={{ color: theme.palette.text.primary }}
+                            scolor="text.primary"
                         >
                             {item.name}
                         </Typography>
                     </MenuItem>
                 ))}
             </Menu>
-        </Box>
+        </Stack>
     );
 }

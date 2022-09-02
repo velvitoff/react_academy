@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    activeBlog: "1506626784522515067"
+    activeBlog: "1506626784522515067",
+    activeBlogName: "DevBlog"
 };
 
 export const bloggerSettingsSlice = createSlice({
@@ -10,14 +11,19 @@ export const bloggerSettingsSlice = createSlice({
     reducers: {
         setActiveBlog: (state, action) => {
             state.activeBlog = action.payload
+        },
+        setActiveBlogName: (state, action) => {
+            state.activeBlogName = action.payload
         }
     }
 });
 
 export const {
-    setActiveBlog
+    setActiveBlog,
+    setActiveBlogName
 } = bloggerSettingsSlice.actions;
 
 export const selectActiveBlogId = state => state.bloggerSettings.activeBlog;
+export const selectActiveBlogName = state => state.bloggerSettings.activeBlogName;
 
 export default bloggerSettingsSlice.reducer;
