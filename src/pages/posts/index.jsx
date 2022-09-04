@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import Stack from '@mui/material/Stack';
-import Box from '@mui/material/Box';
-
 import { postsRequest } from '../../services/bloggerService';
 import { selectActiveBlogId, selectActiveBlogName } from '../../store/slices/bloggerSettingsSlice';
 import PostDisplay from './postDisplay';
-import { Typography } from '@mui/material';
+
+import SkeletonPostDisplay from './skeletonPostDisplay';
+import MainStackWrap from './mainStackWrap';
+import PostsTitle from './postsTitle';
 import Localize from '../../components/common/localize';
 
 export default function Posts() {
@@ -25,7 +25,6 @@ export default function Posts() {
             postsRequest(blogId)
                 .then((response) => {
                     setItems(response.data.items);
-                    console.log(response.data.items[0])
                     setIsLoadingError(false);
                 })
                 .catch((err) => {
@@ -37,33 +36,41 @@ export default function Posts() {
         }
     }, [blogId])
 
+
     if (blogId === '') {
         return (<p>No blog chosen</p>);
     }
+
     if (isLoading) {
-        return (<p>Is loading..</p>);
+        return (
+            <MainStackWrap>
+                <PostsTitle blogName={blogName} />
+                <SkeletonPostDisplay />
+                <SkeletonPostDisplay />
+                <SkeletonPostDisplay />
+            </MainStackWrap>
+        )
     }
+    
     if (isLoadingError) {
-        return (<p>Error loading...</p>);
+        return (
+            <>
+                <PostsTitle blogName={blogName} />
+                <Localize input={"Loading error"} />
+            </>
+        );
     }
+
     if (items.length === 0) {
-        return (<p>No items</p>);
+        return (<Localize input={"This blog doesn't have any posts yet"} />);
     }
 
     return (
-        <Stack
-            mt={10}
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            spacing={2.5}
-        >
-            <Typography variant="h4">
-                <Localize input="Posts for"/> {" " + blogName}
-            </Typography>
+        <MainStackWrap>
+            <PostsTitle blogName={blogName} />
             {items.map((item) => (
                 <PostDisplay post={item} key={item.id} />
             ))}
-        </Stack>
+        </MainStackWrap>
     );
 }
