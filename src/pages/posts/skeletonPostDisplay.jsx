@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 export default function SkeletonPostDisplay() {
     return (
         <Card
-            sx={{ maxWidth: '90%', minWidth: '60%', height: '14vh' }}
+            sx={{ maxWidth: '90vw', minWidth: '60vw', minHeight: '15vh' }}
             variant="outlined"
         >
             <Box sx={{ display: 'flex', justifyContent: 'center'}}>

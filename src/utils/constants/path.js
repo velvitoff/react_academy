@@ -1,4 +1,5 @@
 export const path = {
     ROOT: '/',
-    POSTS: '/posts'
+    POSTS: '/posts',
+    BLOGS: '/blogs'
 }
