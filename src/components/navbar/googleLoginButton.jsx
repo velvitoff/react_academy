@@ -31,18 +31,12 @@ export default function GoogleLoginButton() {
 
     return (
         <ButtonBase>
-            <Stack
-                direction='row'
-                alignItems='center' spacing={1}
-                hover="cursor:pointer"
-            >
-                <Typography
-                    onClick={login}
-                    color="primary.contrastText"
-                    fontSize="1.3rem">
-                    Log In
-                </Typography>
-            </Stack>
+            <Typography
+                onClick={login}
+                color="primary.contrastText"
+                fontSize="1.3rem">
+                Log In
+            </Typography>
         </ButtonBase>
     );
 }
