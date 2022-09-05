@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
-import { selectPicture } from '../../store/slices/userSettingsSlice';
 import { Menu, MenuItem } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 import Localize from '../common/localize';
 import { handleTokenLogOut } from '../../services/authService';
-import { setPicture, setIsLoggedIn } from '../../store/slices/userSettingsSlice';
+import { setIsLoggedIn } from '../../store/slices/userSettingsSlice';
 
 export default function ProfilePicture() {
     const dispatch = useDispatch();
-    const picture = useSelector(selectPicture);
     const [anchorElNav, setAnchorElNav] = useState(null);
 
     const handleOpenNavMenu = (event) => {
@@ -28,7 +26,6 @@ export default function ProfilePicture() {
     const handleLogOut = () => {
         handleTokenLogOut();
         dispatch(setIsLoggedIn(false));
-        dispatch(setPicture(""));
     }
 
     return (
@@ -36,7 +33,7 @@ export default function ProfilePicture() {
             <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open account">
                     <IconButton sx={{ p: 0 }} onClick={handleOpenNavMenu}>
-                        <Avatar src={picture} />
+                        <Avatar />
                     </IconButton>
                 </Tooltip>
             </Box>

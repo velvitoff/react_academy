@@ -5,7 +5,6 @@ const StyledTypography = styled(Typography)(({theme}) => ({
     fontFamily: 'monospace',
     fontWeight: 700,
     letterSpacing: '.3rem',
-    color: 'inherit',
     textDecoration: 'none',
 }));
 

@@ -6,12 +6,11 @@ import { Typography } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-import { selectLanguageName, selectThemeObject, setLanguage } from '../../store/slices/userSettingsSlice';
+import { selectLanguageName, setLanguage } from '../../store/slices/userSettingsSlice';
 import languageNames from '../../utils/translation/languageFullNames';
 
 export default function LanguageDropdown() {
 
-    const theme = useSelector(selectThemeObject);
     const language = useSelector(selectLanguageName);
     const dispatch = useDispatch();
     const [anchorElNav, setAnchorElNav] = useState(null);
@@ -32,8 +31,8 @@ export default function LanguageDropdown() {
     return (
         <>
             <IconButton onClick={handleOpenNavMenu}>
-                <LanguageIcon sx={{ color: theme.palette.primary.iconColor, mr: 0.5 }} />
-                <Typography variant="h6" sx={{ color: theme.palette.primary.contrastText }}>{language}</Typography>
+                <LanguageIcon sx={{ mr: 0.5, color: "primary.iconColor" }} />
+                <Typography variant="h6" color="primary.contrastText">{language}</Typography>
             </IconButton>
 
             <Menu
@@ -49,7 +48,7 @@ export default function LanguageDropdown() {
                     <MenuItem key={language} onClick={handleLanguageChoice}>
                         <Typography
                             textAlign="center"
-                            sx={{ color: theme.palette.text.primary }}
+                            color="text.primary"
                             lang={language}
                         >
                             {languageNames[language]}
