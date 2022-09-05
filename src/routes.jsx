@@ -14,7 +14,7 @@ export default function RoutesComponent() {
         <Routes>
             <Route exact path={path.ROOT} element={<Home />} />
             <Route path={path.BLOGS} element={<Blogs />} />
-            <Route path={path.POSTS} element={<Posts />} />
+            <Route path={`${path.POSTS}/:blogId`} element={<Posts />} />
         </Routes>
     );
 }

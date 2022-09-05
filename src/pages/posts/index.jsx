@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useParams } from "react-router-dom";
 
-import { postsRequest } from '../../services/bloggerService';
-import { selectActiveBlogId, selectActiveBlogName } from '../../store/slices/bloggerSettingsSlice';
+import { blogNameRequest, postsRequest } from '../../services/bloggerService';
 import PostDisplay from './postDisplay';
 
 import SkeletonPostDisplay from './skeletonPostDisplay';
-import MainStackWrap from './mainStackWrap';
+import MainStackWrapper from './mainStackWrapper';
 import PostsTitle from './postsTitle';
 import Localize from '../../components/common/localize';
 
 export default function Posts() {
 
-    const blogId = useSelector(selectActiveBlogId);
-    const blogName = useSelector(selectActiveBlogName);
+    let {blogId} = useParams();
+    const [blogName, setBlogName] = useState("");
 
     const [items, setItems] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -33,6 +32,11 @@ export default function Posts() {
                 .finally(() => {
                     setIsLoading(false);
                 })
+
+            blogNameRequest(blogId)
+                .then((response) => {
+                    setBlogName(response.data.name);
+                })
         }
     }, [blogId])
 
@@ -43,12 +47,12 @@ export default function Posts() {
 
     if (isLoading) {
         return (
-            <MainStackWrap>
+            <MainStackWrapper>
                 <PostsTitle blogName={blogName} />
                 <SkeletonPostDisplay />
                 <SkeletonPostDisplay />
                 <SkeletonPostDisplay />
-            </MainStackWrap>
+            </MainStackWrapper>
         )
     }
     
@@ -66,11 +70,11 @@ export default function Posts() {
     }
 
     return (
-        <MainStackWrap>
+        <MainStackWrapper>
             <PostsTitle blogName={blogName} />
             {items.map((item) => (
                 <PostDisplay post={item} key={item.id} />
             ))}
-        </MainStackWrap>
+        </MainStackWrapper>
     );
 }
