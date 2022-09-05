@@ -16,7 +16,7 @@ export default function Posts() {
     const blogName = useSelector(selectActiveBlogName);
 
     const [items, setItems] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [isLoadingError, setIsLoadingError] = useState(false);
 
     useEffect(() => {
