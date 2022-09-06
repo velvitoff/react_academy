@@ -11,7 +11,6 @@ import Localize from '../../components/common/localize';
 import IconDropdown from './iconDropdown';
 
 export default function PostDisplay({ post }) {
-    console.log(post);
     return (
         <Card
             sx={{ maxWidth: '90vw', minWidth: '60vw', minHeight: '15vh' }}

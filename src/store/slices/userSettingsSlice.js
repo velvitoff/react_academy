@@ -1,16 +1,33 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { getLanguageFromStorage, getThemeFromStorage, setLanguageToStorage, setThemeToStorage } from '../../services/localStorageService';
 import { themeTokens } from '../../utils/theme/themeTokens';
 import languageFullNames from '../../utils/translation/languageFullNames';
 import { getAccessToken } from './../../services/authService';
 
 const getIsLoggedIn = () => {
     const token = getAccessToken();
-    return token !== undefined && token !== null && token !== 'undefined';
+    return !!token;
+}
+
+const getLanguage = () => {
+    const lang = getLanguageFromStorage();
+    if(!lang){
+        return 'en';
+    }
+    return lang;
+}
+
+const getTheme = () => {
+    const theme = getThemeFromStorage();
+    if(!theme){
+        return 'light';
+    }
+    return theme;
 }
 
 const initialState = {
-    theme: 'light',
-    language: 'en',
+    theme: getTheme(),
+    language: getLanguage(),
     isLoggedIn: getIsLoggedIn()
 };
 
@@ -19,18 +36,15 @@ export const userSettingsSlice = createSlice({
     initialState,
     reducers: {
         switchThemeToLight: (state) => {
+            setThemeToStorage('light');
             state.theme = 'light'
         },
         switchThemeToDark: (state) => {
+            setThemeToStorage('dark');
             state.theme = 'dark'
         },
-        switchThemeToOpposite: (state) => {
-            if (state.theme === 'light')
-                state.theme = 'dark'
-            else if (state.theme === 'dark')
-                state.theme = 'light'
-        },
         setLanguage: (state, action) => {
+            setLanguageToStorage(action.payload);
             state.language = action.payload
         },
         setIsLoggedIn: (state, action) => {
@@ -42,7 +56,6 @@ export const userSettingsSlice = createSlice({
 export const {
     switchThemeToLight,
     switchThemeToDark,
-    switchThemeToOpposite,
     setLanguage,
     setIsLoggedIn
 } = userSettingsSlice.actions;

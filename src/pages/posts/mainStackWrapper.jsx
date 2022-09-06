@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack } from '@mui/material';
 
-export default function MainStackWrap({ children }) {
+export default function MainStackWrapper({ children }) {
     return (
         <Stack
             mt={10}

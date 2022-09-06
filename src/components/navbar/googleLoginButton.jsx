@@ -1,9 +1,7 @@
 import React from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useDispatch } from 'react-redux';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import LoginIcon from '@mui/icons-material/Login';
 
 import { handleTokenLogIn } from '../../services/authService';
 import { setIsLoggedIn } from '../../store/slices/userSettingsSlice';

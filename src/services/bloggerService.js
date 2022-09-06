@@ -11,6 +11,15 @@ export const blogRequest = (blogId) => {
     });
 }
 
+export const blogNameRequest = (blogId) => {
+    return axios.get(`${address}/blogs/${blogId}`, {
+        params: {
+            key: process.env.REACT_APP_BLOGGER_API_KEY,
+            fields: 'name'
+        }
+    });
+}
+
 export const postsRequest = (blogId) => {
     return axios.get(`${address}/blogs/${blogId}/posts`, {
         params: {
@@ -29,4 +38,13 @@ export const blogsRequest = () => {
             Authorization: getAccessTokenWithBearer()
         }
     })
+}
+
+export const postSearchRequest = (blogId, searchString) => {
+    return axios.get(`${address}/blogs/${blogId}/posts/search`, {
+        params: {
+            q: searchString,
+            key: process.env.REACT_APP_BLOGGER_API_KEY
+        }
+    });
 }

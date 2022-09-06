@@ -13,8 +13,7 @@ import Localize from '../common/localize';
 import { Stack } from '@mui/material';
 
 const pageList = [
-  { title: "Blogs", link: path.BLOGS },
-  { title: "Posts", link: path.POSTS }
+  { title: "Blogs", link: path.BLOGS }
 ];
 
 export default function NavList() {
