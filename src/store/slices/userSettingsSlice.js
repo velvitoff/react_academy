@@ -6,12 +6,12 @@ import { getAccessToken } from './../../services/authService';
 
 const getIsLoggedIn = () => {
     const token = getAccessToken();
-    return token !== undefined && token !== null && token !== 'undefined';
+    return !!token;
 }
 
 const getLanguage = () => {
     const lang = getLanguageFromStorage();
-    if(lang === null || lang === undefined){
+    if(!lang){
         return 'en';
     }
     return lang;
@@ -19,7 +19,7 @@ const getLanguage = () => {
 
 const getTheme = () => {
     const theme = getThemeFromStorage();
-    if(theme === null || theme === undefined){
+    if(!theme){
         return 'light';
     }
     return theme;
