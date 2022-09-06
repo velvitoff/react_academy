@@ -1,45 +1,80 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useParams } from "react-router-dom";
 
-import { blogNameRequest, postsRequest } from '../../services/bloggerService';
+import { blogNameRequest, postSearchRequest, postsRequest } from '../../services/bloggerService';
 import PostDisplay from './postDisplay';
 
 import SkeletonPostDisplay from './skeletonPostDisplay';
 import MainStackWrapper from './mainStackWrapper';
 import PostsTitle from './postsTitle';
 import Localize from '../../components/common/localize';
+import PostSearchBar from './search/postSearchBar';
+import { Box } from '@mui/system';
 
 export default function Posts() {
 
-    let {blogId} = useParams();
+    let { blogId } = useParams();
     const [blogName, setBlogName] = useState("");
 
-    const [items, setItems] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isLoadingError, setIsLoadingError] = useState(false);
+    const [items, setItems] = useState([]);
+    const [allItems, setAllItems] = useState([]);
+
+    const performPostsRequest = () => {
+        postsRequest(blogId)
+            .then((response) => {
+                setItems(response.data.items);
+                setAllItems(response.data.items);
+                setIsLoadingError(false);
+            })
+            .catch((err) => {
+                setIsLoadingError(true);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            })
+    }
+
+    const performSearchRequest = (searchTerm) => {
+        postSearchRequest(blogId, searchTerm)
+            .then((response) => {
+                if (response.data.items !== undefined) {
+                    setItems(response.data.items);
+                }
+                else {
+                    setItems([]);
+                }
+            })
+            .catch((err) => {
+                setItems([]);
+            })
+    }
+
+    const performBlogNameRequest = () => {
+        blogNameRequest(blogId)
+            .then((response) => {
+                setBlogName(response.data.name);
+            })
+    }
+
+    const searchCallback = (term) => {
+        if (term === "") {
+            setItems(allItems);
+        }
+        else {
+            performSearchRequest(term);
+        }
+
+    }
 
     useEffect(() => {
         setIsLoading(true);
         if (blogId !== '') {
-            postsRequest(blogId)
-                .then((response) => {
-                    setItems(response.data.items);
-                    setIsLoadingError(false);
-                })
-                .catch((err) => {
-                    setIsLoadingError(true);
-                })
-                .finally(() => {
-                    setIsLoading(false);
-                })
-
-            blogNameRequest(blogId)
-                .then((response) => {
-                    setBlogName(response.data.name);
-                })
+            performPostsRequest();
+            performBlogNameRequest();
         }
-    }, [blogId])
-
+    }, [])
 
     if (blogId === '') {
         return (<p>No blog chosen</p>);
@@ -55,7 +90,7 @@ export default function Posts() {
             </MainStackWrapper>
         )
     }
-    
+
     if (isLoadingError) {
         return (
             <>
@@ -65,16 +100,18 @@ export default function Posts() {
         );
     }
 
-    if (items.length === 0) {
-        return (<Localize input={"This blog doesn't have any posts yet"} />);
-    }
-
     return (
         <MainStackWrapper>
             <PostsTitle blogName={blogName} />
+            <PostSearchBar searchCallback={searchCallback} />
             {items.map((item) => (
                 <PostDisplay post={item} key={item.id} />
             ))}
+            {items.length === 0 &&
+                <Box sx={{ mt: 2 }}>
+                    <Localize input={"No posts to display"} />
+                </Box>
+            }
         </MainStackWrapper>
     );
 }

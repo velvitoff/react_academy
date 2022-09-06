@@ -39,3 +39,12 @@ export const blogsRequest = () => {
         }
     })
 }
+
+export const postSearchRequest = (blogId, searchString) => {
+    return axios.get(`${address}/blogs/${blogId}/posts/search`, {
+        params: {
+            q: searchString,
+            key: process.env.REACT_APP_BLOGGER_API_KEY
+        }
+    });
+}
