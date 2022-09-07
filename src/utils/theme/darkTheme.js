@@ -7,7 +7,8 @@ const darkTheme = createTheme({
         primary: {
             main: '#282831',
             iconColor: '#fafafa',
-            contrastText: '#fafafa'
+            contrastText: '#fafafa',
+            searchBar: 'rgba(250,250,250,0.2)'
         },
         secondary: {
             main: '#de4747',

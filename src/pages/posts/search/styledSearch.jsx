@@ -1,11 +1,11 @@
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 export const StyledSearch = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    backgroundColor: theme.palette.primary.searchBar,
     '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
+        backgroundColor: theme.palette.primary.searchBar,
     },
     marginLeft: 0,
     width: '100%',

@@ -1,3 +1,4 @@
+import { SportsRugbySharp } from '@mui/icons-material';
 import { createTheme } from '@mui/material/styles';
 
 const lightTheme = createTheme({
@@ -7,6 +8,7 @@ const lightTheme = createTheme({
         primary: {
             main: '#2d2d2d',
             iconColor: '#fafafa',
+            searchBar: 'rgba(0,0,0,0.05)'
         },
         secondary: {
             main: '#de4747',
