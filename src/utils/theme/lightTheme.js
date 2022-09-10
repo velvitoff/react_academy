@@ -1,4 +1,3 @@
-import { SportsRugbySharp } from '@mui/icons-material';
 import { createTheme } from '@mui/material/styles';
 
 const lightTheme = createTheme({

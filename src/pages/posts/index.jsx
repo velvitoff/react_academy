@@ -18,14 +18,14 @@ export default function Posts() {
 
     const [isLoading, setIsLoading] = useState(false);
     const [isLoadingError, setIsLoadingError] = useState(false);
+    const [filteredItems, setFilteredItems] = useState([]);
     const [items, setItems] = useState([]);
-    const [allItems, setAllItems] = useState([]);
 
     const performPostsRequest = () => {
         postsRequest(blogId)
             .then((response) => {
+                setFilteredItems(response.data.items);
                 setItems(response.data.items);
-                setAllItems(response.data.items);
                 setIsLoadingError(false);
             })
             .catch((err) => {
@@ -40,14 +40,14 @@ export default function Posts() {
         postSearchRequest(blogId, searchTerm)
             .then((response) => {
                 if (response.data.items !== undefined) {
-                    setItems(response.data.items);
+                    setFilteredItems(response.data.items);
                 }
                 else {
                     setItems([]);
                 }
             })
             .catch((err) => {
-                setItems([]);
+                setFilteredItems([]);
             })
     }
 
@@ -60,7 +60,7 @@ export default function Posts() {
 
     const searchCallback = (term) => {
         if (term === "") {
-            setItems(allItems);
+            setFilteredItems(items);
         }
         else {
             performSearchRequest(term);
@@ -104,10 +104,10 @@ export default function Posts() {
         <MainStackWrapper>
             <PostsTitle blogName={blogName} />
             <PostSearchBar searchCallback={searchCallback} />
-            {items.map((item) => (
-                <PostDisplay post={item} key={item.id} />
+            {filteredItems.map((item) => (
+                <PostDisplay blogId={blogId} post={item} key={item.id} />
             ))}
-            {items.length === 0 &&
+            {filteredItems.length === 0 &&
                 <Box sx={{ mt: 2 }}>
                     <Localize input={"No posts to display"} />
                 </Box>

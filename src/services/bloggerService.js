@@ -25,6 +25,9 @@ export const postsRequest = (blogId) => {
         params: {
             key: process.env.REACT_APP_BLOGGER_API_KEY,
             fields: 'kind,items(kind,id,url,title,author,replies,published,updated)'
+        },
+        headers: {
+            Authorization: getAccessTokenWithBearer()
         }
     });
 }
@@ -45,6 +48,14 @@ export const postSearchRequest = (blogId, searchString) => {
         params: {
             q: searchString,
             key: process.env.REACT_APP_BLOGGER_API_KEY
+        }
+    });
+}
+
+export const postRequest = (blogId, postId) => {
+    return axios.get(`${address}/blogs/${blogId}/posts/${postId}`, {
+        headers: {
+            Authorization: getAccessTokenWithBearer()
         }
     });
 }
