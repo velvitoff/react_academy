@@ -3,13 +3,23 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
-.post > div > h1 {
+
+
+.post > div > h1,
+.post > div > h2,
+.post > div > h3{
     text-align: center;
 }
 
-.post > figure > div > div img, .post > div > h1 > img {
+.post > figure > div > div img,
+.post > div > h1 > img {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -17,15 +27,19 @@
     max-height: 70vh;
 }
 
-.post > p, .post > div > p, .post > p > b {
-    width: 60%;
+.post > p,
+.post > div > p,
+.post > p > b,
+.post > div > pre{
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
+    
 }
 
-.post > ul > li, .post > ol > li {
-    width: 60%;
+.post > ul > li,
+.post > ol > li,
+.post > div > ol > li,
+.post > div > ul, li{
     margin-left: auto;
     margin-right: auto;
 }

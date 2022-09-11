@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
 
 import { postRequest } from '../../services/bloggerService';
-import PostTitle from './postTitle';
 import './post.css';
 
 export default function Post() {
@@ -40,7 +39,6 @@ export default function Post() {
 
     return (
         <>
-            <PostTitle text={data.title} />
             {data.content === undefined ? null : <div className="post">{parse(data.content)}</div>}
         </>
     );
