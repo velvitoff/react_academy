@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { postRequest } from '../../services/bloggerService';
 import './post.css';
+import { Box } from '@mui/material';
+import Localize from '../../components/common/localize';
 
 export default function Post() {
 
@@ -31,10 +34,14 @@ export default function Post() {
     }, []);
 
     if (isLoading) {
-        return (<p>is loading</p>);
+        return (
+            <Box sx={{textAlign:'center', mt:20}}>
+                <CircularProgress />
+            </Box>
+        );
     }
     if (isLoadingError) {
-        return (<p>is loading error</p>);
+        return (<Localize input="Loading error..."/>);
     }
 
     return (

@@ -80,6 +80,11 @@ export default function Posts() {
         return (<p>No blog chosen</p>);
     }
 
+    const deletePostCallback = (postId) => {
+        setItems(items.filter(item => item.id !== postId));
+        setFilteredItems(filteredItems.filter(item => item.id !== postId));
+    }
+
     if (isLoading) {
         return (
             <MainStackWrapper>
@@ -105,7 +110,7 @@ export default function Posts() {
             <PostsTitle blogName={blogName} />
             <PostSearchBar searchCallback={searchCallback} />
             {filteredItems.map((item) => (
-                <PostDisplay blogId={blogId} post={item} key={item.id} />
+                <PostDisplay blogId={blogId} post={item} key={item.id} deletePostCallback={deletePostCallback} />
             ))}
             {filteredItems.length === 0 &&
                 <Box sx={{ mt: 2 }}>

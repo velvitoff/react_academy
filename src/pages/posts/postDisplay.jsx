@@ -12,7 +12,7 @@ import Localize from '../../components/common/localize';
 import IconDropdown from './iconDropdown';
 import { path } from './../../utils/constants/path';
 
-export default function PostDisplay({ blogId, post }) {
+export default function PostDisplay({ blogId, post, deletePostCallback }) {
     return (
         <Card
             sx={{ maxWidth: '90vw', minWidth: '60vw', minHeight: '15vh' }}
@@ -25,7 +25,7 @@ export default function PostDisplay({ blogId, post }) {
                             {post.title}
                         </Typography>
                     </Link>
-                    <IconDropdown />
+                    <IconDropdown blogId={blogId} postId={post.id} deletePostCallback={deletePostCallback}/>
                 </Stack>
 
                 <Stack direction="row" alignItems="center" spacing={1}>

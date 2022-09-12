@@ -59,3 +59,11 @@ export const postRequest = (blogId, postId) => {
         }
     });
 }
+
+export const deletePostRequest = (blogId, postId) => {
+    return axios.delete(`${address}/blogs/${blogId}/posts/${postId}`, {
+        headers: {
+            Authorization: getAccessTokenWithBearer()
+        }
+    })
+}
