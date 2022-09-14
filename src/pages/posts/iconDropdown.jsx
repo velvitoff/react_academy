@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Typography from '@mui/material/Typography';
+import { Alert, Snackbar } from '@mui/material';
+
 import Localize from '../../components/common/localize';
 import DeletePostModal from './search/deletePostModal';
 import { deletePostRequest } from '../../services/bloggerService';
-import { Alert, Snackbar } from '@mui/material';
+import { path } from '../../utils/constants/path';
 
-export default function IconDropdown({ blogId, postId, deletePostCallback}) {
+
+export default function IconDropdown({ blogId, postId, deletePostCallback }) {
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [showErrorSnackbar, setShowErrorSnackbar] = useState(false);
+    const navigate = useNavigate();
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -26,7 +31,12 @@ export default function IconDropdown({ blogId, postId, deletePostCallback}) {
         setDeleteModalOpen(true);
     }
 
+    const handleEditClick = () => {
+        navigate(`${path.POST_EDIT}/${blogId}/${postId}`);
+    }
+
     const menuItems = [
+        { text: 'Edit', func: handleEditClick },
         { text: 'Delete', func: handleDeleteClick }
     ];
 

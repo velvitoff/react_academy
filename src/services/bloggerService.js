@@ -82,3 +82,21 @@ export const addPostRequest = (blogId, data) => {
         }
     });
 }
+
+export const editPostRequest = (blogId, initialData, newData) => {
+    return axios.put(`${address}/blogs/${blogId}/posts/${initialData.id}`, {
+        "kind": "blogger#post",
+        "id": initialData.id,
+        "blog": {
+            "id": blogId
+        },
+        "url": initialData.url,
+        "selfLink": initialData.selfLink,
+        "title": newData.title,
+        "content": newData.content
+    }, {
+        headers: {
+            Authorization: getAccessTokenWithBearer()
+        }
+    })
+}

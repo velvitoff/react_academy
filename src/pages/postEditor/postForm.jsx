@@ -8,18 +8,19 @@ import { Alert, Box, Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import Localize from '../../components/common/localize';
 import TextField from '@mui/material/TextField';
-import useLocalize from './../../hooks/useLocalize';
+import useLocalize from '../../hooks/useLocalize';
 import Snackbar from '@mui/material/Snackbar';
 import './postEditor.css';
 
-export default function PostEditorLayout({ isEdit, publishCallback }) {
+export default function PostForm({ isEdit, publishCallback, initialData }) {
 
     const titleLabel = useLocalize("Article title");
     const [errorBarOpen, setErrorBarOpen] = useState(false);
+
     const { handleSubmit, control } = useForm({
         defaultValues: {
-            title: "",
-            content: ""
+            title: initialData.title,
+            content: initialData.content
         }
     });
 

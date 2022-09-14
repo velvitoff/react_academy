@@ -5,7 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 import { postRequest } from '../../services/bloggerService';
 import './post.css';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Localize from '../../components/common/localize';
 
 export default function Post() {
@@ -20,7 +20,6 @@ export default function Post() {
         setIsLoading(true);
         postRequest(blogId, postId)
             .then((response) => {
-                console.log(response.data);
                 setData(response.data);
                 setIsLoadingError(false);
             })
@@ -45,8 +44,9 @@ export default function Post() {
     }
 
     return (
-        <>
-            {data.content === undefined ? null : <div className="post">{parse(data.content)}</div>}
-        </>
+        <div className="post">
+            <Typography variant="h4">{data.title}</Typography>
+            {data.content === undefined ? null : <>{parse(data.content)}</>}
+        </div>
     );
 }
