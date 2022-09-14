@@ -1,0 +1,23 @@
+#post-editor-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+#post-editor-wrap > * {
+    width: 97%;
+    height: 100%;
+}
+
+#post-editor{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+

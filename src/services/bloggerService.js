@@ -67,3 +67,18 @@ export const deletePostRequest = (blogId, postId) => {
         }
     })
 }
+
+export const addPostRequest = (blogId, data) => {
+    return axios.post(`${address}/blogs/${blogId}/posts`, {
+        "kind": "blogger#post",
+        "blog": {
+            "id": blogId
+        },
+        title: data.title,
+        content: data.content
+    }, {
+        headers: {
+            Authorization: getAccessTokenWithBearer()
+        }
+    });
+}
