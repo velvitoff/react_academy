@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm, Controller } from "react-hook-form";
-import { useParams } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { addPostRequest, postRequest } from '../../services/bloggerService';
+
 import { Alert, Box, Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import Localize from '../../components/common/localize';
 import TextField from '@mui/material/TextField';
 import useLocalize from '../../hooks/useLocalize';
 import Snackbar from '@mui/material/Snackbar';
+
+import Localize from '../../components/common/localize';
 import './postEditor.css';
 
 export default function PostForm({ isEdit, publishCallback, initialData }) {

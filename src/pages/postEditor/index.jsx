@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { addPostRequest, editPostRequest, postRequest } from '../../services/bloggerService';
-
-import './postEditor.css';
 import PostForm from './postForm';
 import { path } from '../../utils/constants/path';
+import { addPostRequest, editPostRequest, postRequest } from '../../services/bloggerService';
+import './postEditor.css';
 
 export default function PostEditor() {
 

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
+
 import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 import { postRequest } from '../../services/bloggerService';
 import './post.css';
-import { Box, Typography } from '@mui/material';
+
 import Localize from '../../components/common/localize';
 
 export default function Post() {
