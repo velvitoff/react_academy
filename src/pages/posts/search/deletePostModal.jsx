@@ -6,18 +6,18 @@ import Modal from '@mui/material/Modal';
 import Localize from '../../../components/common/localize';
 import { Stack } from '@mui/material';
 
-export default function DeletePostModal({ open, closeCallback }) {
+const boxStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+};
 
-    const boxStyle = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        boxShadow: 24,
-        p: 4,
-    };
+export default function DeletePostModal({ open, closeCallback }) {
 
     const onCancel = () => {
         closeCallback(false);
