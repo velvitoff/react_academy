@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 import Card from '@mui/material/Card';
@@ -9,8 +10,9 @@ import Avatar from '@mui/material/Avatar';
 
 import Localize from '../../components/common/localize';
 import IconDropdown from './iconDropdown';
+import { path } from './../../utils/constants/path';
 
-export default function PostDisplay({ post }) {
+export default function PostDisplay({ blogId, post, deletePostCallback }) {
     return (
         <Card
             sx={{ maxWidth: '90vw', minWidth: '60vw', minHeight: '15vh' }}
@@ -18,10 +20,12 @@ export default function PostDisplay({ post }) {
         >
             <CardContent>
                 <Stack direction="row" justifyContent="space-between">
-                    <Typography gutterBottom variant="h5" component="div">
-                        {post.title}
-                    </Typography>
-                    <IconDropdown />
+                    <Link to={`${path.POST}/${blogId}/${post.id}`} style={{ textDecoration: 'none' }}>
+                        <Typography gutterBottom variant="h5" component="div" color="text.primary">
+                            {post.title}
+                        </Typography>
+                    </Link>
+                    <IconDropdown blogId={blogId} postId={post.id} deletePostCallback={deletePostCallback}/>
                 </Stack>
 
                 <Stack direction="row" alignItems="center" spacing={1}>

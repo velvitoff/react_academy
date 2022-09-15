@@ -7,6 +7,7 @@ const lightTheme = createTheme({
         primary: {
             main: '#2d2d2d',
             iconColor: '#fafafa',
+            searchBar: 'rgba(0,0,0,0.05)'
         },
         secondary: {
             main: '#de4747',

@@ -1,15 +1,20 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import { blogNameRequest, postSearchRequest, postsRequest } from '../../services/bloggerService';
+import Box from '@mui/system/Box';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import AddIcon from '@mui/icons-material/Add';
+
 import PostDisplay from './postDisplay';
-
 import SkeletonPostDisplay from './skeletonPostDisplay';
 import MainStackWrapper from './mainStackWrapper';
 import PostsTitle from './postsTitle';
 import Localize from '../../components/common/localize';
 import PostSearchBar from './search/postSearchBar';
-import { Box } from '@mui/system';
+import { blogNameRequest, postSearchRequest, postsRequest } from '../../services/bloggerService';
+import { path } from '../../utils/constants/path';
 
 export default function Posts() {
 
@@ -18,14 +23,14 @@ export default function Posts() {
 
     const [isLoading, setIsLoading] = useState(false);
     const [isLoadingError, setIsLoadingError] = useState(false);
+    const [filteredItems, setFilteredItems] = useState([]);
     const [items, setItems] = useState([]);
-    const [allItems, setAllItems] = useState([]);
 
     const performPostsRequest = () => {
         postsRequest(blogId)
             .then((response) => {
+                setFilteredItems(response.data.items);
                 setItems(response.data.items);
-                setAllItems(response.data.items);
                 setIsLoadingError(false);
             })
             .catch((err) => {
@@ -40,14 +45,14 @@ export default function Posts() {
         postSearchRequest(blogId, searchTerm)
             .then((response) => {
                 if (response.data.items !== undefined) {
-                    setItems(response.data.items);
+                    setFilteredItems(response.data.items);
                 }
                 else {
                     setItems([]);
                 }
             })
             .catch((err) => {
-                setItems([]);
+                setFilteredItems([]);
             })
     }
 
@@ -60,7 +65,7 @@ export default function Posts() {
 
     const searchCallback = (term) => {
         if (term === "") {
-            setItems(allItems);
+            setFilteredItems(items);
         }
         else {
             performSearchRequest(term);
@@ -76,9 +81,11 @@ export default function Posts() {
         }
     }, [])
 
-    if (blogId === '') {
-        return (<p>No blog chosen</p>);
+    const deletePostCallback = (postId) => {
+        setItems(items.filter(item => item.id !== postId));
+        setFilteredItems(filteredItems.filter(item => item.id !== postId));
     }
+
 
     if (isLoading) {
         return (
@@ -104,10 +111,20 @@ export default function Posts() {
         <MainStackWrapper>
             <PostsTitle blogName={blogName} />
             <PostSearchBar searchCallback={searchCallback} />
-            {items.map((item) => (
-                <PostDisplay post={item} key={item.id} />
+
+            <Link to={`${path.POST_CREATE}/${blogId}`} style={{ textDecoration: 'none' }}>
+                <Stack direction="row" justifyContent="center" alignItems="center">
+                    <AddIcon sx={{color:"text.primary"}}/>
+                    <Typography color="text.primary">
+                        <Localize input="New article" />
+                    </Typography>
+                </Stack>
+            </Link>
+
+            {filteredItems.map((item) => (
+                <PostDisplay blogId={blogId} post={item} key={item.id} deletePostCallback={deletePostCallback} />
             ))}
-            {items.length === 0 &&
+            {filteredItems.length === 0 &&
                 <Box sx={{ mt: 2 }}>
                     <Localize input={"No posts to display"} />
                 </Box>

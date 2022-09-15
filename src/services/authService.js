@@ -14,5 +14,9 @@ export const getAccessToken = () => {
 }
 
 export const getAccessTokenWithBearer = () => {
-    return `Bearer ${getAccessToken()}`;
+    const token = getAccessToken();
+    if (!token){
+        return "";
+    }
+    return `Bearer ${token}`;
 }

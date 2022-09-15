@@ -3,10 +3,12 @@ import { StyledSearch } from './styledSearch';
 import { SearchIconWrapper } from './searchIconWrapper';
 import { StyledInputBase } from './styledInputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import useLocalize from '../../../hooks/useLocalize';
 
 export default function PostSearchBar({ searchCallback }) {
 
     const [searchTerm, setSearchTerm] = useState("");
+    const textPlaceholder = useLocalize("Search...");
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
@@ -27,7 +29,7 @@ export default function PostSearchBar({ searchCallback }) {
             </SearchIconWrapper>
             <StyledInputBase
                 onChange={handleChange}
-                placeholder="Search…"
+                placeholder={textPlaceholder}
                 inputProps={{ 'aria-label': 'search' }}
             />
         </StyledSearch>
