@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectLanguage } from '../../store/slices/userSettingsSlice';
 import { translateRequest } from '../../services/translationService';
@@ -17,7 +17,7 @@ export default function Localize({ input }) {
         })
     }
 
-    useEffect(() => {
+    React.useEffect(() => {
         translate(input, language);
     }, [language, input])
 
