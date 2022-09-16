@@ -1,25 +1,25 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from "react-router-dom";
 
-function App() {
+import store from './store';
+import UserSettingsProvider from './components/common/userSettingsProvider';
+import GeneralAppLayout from './components/common/generalAppLayout';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
+export default function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_APP_CLIENT_ID}>
+        <BrowserRouter>
+          <UserSettingsProvider>
+            <GeneralAppLayout />
+          </UserSettingsProvider>
+        </BrowserRouter>
+      </GoogleOAuthProvider>
+    </Provider>
   );
 }
 
-export default App;
