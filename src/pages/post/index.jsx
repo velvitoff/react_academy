@@ -47,9 +47,9 @@ export default function Post() {
     }
 
     return (
-        <div className="post">
+        <Box className="post" sx={{backgroundColor: "primary.articleBackground"}}>
             <Typography variant="h4">{data.title}</Typography>
             {data.content === undefined ? null : <>{parse(data.content)}</>}
-        </div>
+        </Box>
     );
 }

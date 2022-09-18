@@ -37,7 +37,7 @@ export default function PostForm({ isEdit, publishCallback, initialData }) {
 
     return (
         <>
-            <Box id="post-editor-wrap">
+            <Box id="post-editor-wrap" sx={{backgroundColor: "primary.articleBackground"}}>
                 <Controller
                     name="title"
                     control={control}
@@ -59,7 +59,7 @@ export default function PostForm({ isEdit, publishCallback, initialData }) {
                     variant="outlined"
                     endIcon={<SendIcon />}
                 >
-                    <Localize input={isEdit ? "Edit article" : "Publish article"} />
+                    <Localize input={isEdit ? "Save article" : "Publish article"} />
                 </Button>
             </Box >
 
