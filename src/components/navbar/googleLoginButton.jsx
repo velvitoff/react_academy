@@ -8,6 +8,7 @@ import { handleTokenLogIn } from '../../services/authService';
 import { setIsLoggedIn } from '../../store/slices/userSettingsSlice';
 import { ButtonBase } from '@mui/material';
 import { path } from '../../utils/constants/path';
+import Localize from '../common/localize';
 
 export default function GoogleLoginButton() {
     const dispatch = useDispatch();
@@ -36,8 +37,9 @@ export default function GoogleLoginButton() {
             <Typography
                 onClick={login}
                 color="primary.contrastText"
-                fontSize="1.3rem">
-                Log In
+                fontSize="1.3rem"
+            >
+                <Localize input="Log In"/>
             </Typography>
         </ButtonBase>
     );
