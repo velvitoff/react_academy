@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Box from '@mui/system/Box';
-import Pagination from '@mui/material/Pagination';
 
 import PostDisplay from './postDisplay';
 import Localize from '../../components/common/localize';

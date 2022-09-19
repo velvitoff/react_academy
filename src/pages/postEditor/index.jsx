@@ -5,6 +5,7 @@ import PostForm from './postForm';
 import { path } from '../../utils/constants/path';
 import { addPostRequest, editPostRequest, postRequest } from '../../services/bloggerService';
 import './postEditor.css';
+import Localize from '../../components/common/localize';
 
 export default function PostEditor() {
 
@@ -12,6 +13,7 @@ export default function PostEditor() {
     const navigate = useNavigate();
     const [initialData, setInitialData] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const [isLoadingError, setIsLoadingError] = useState(false);
 
     const isEdit = !!postId;
 
@@ -21,6 +23,10 @@ export default function PostEditor() {
             postRequest(blogId, postId)
                 .then((response) => {
                     setInitialData(response.data);
+                    setIsLoadingError(false);
+                })
+                .catch((err) => {
+                    setIsLoadingError(true);
                 })
                 .finally(() => {
                     setIsLoading(false);
@@ -51,7 +57,13 @@ export default function PostEditor() {
 
     if (isLoading) {
         return (
-            <p>Loading...</p>
+            <Localize input="Loading..." />
+        );
+    }
+
+    if (isLoadingError) {
+        return (
+            <Localize input="Loading error"/>
         );
     }
 

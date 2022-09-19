@@ -16,6 +16,7 @@ const lightTheme = createTheme({
         background: {
             default: '#fafafa',
             paper: '#ffffff',
+            iconColor: '#303030'
         },
         text: {
             primary: 'rgba(0,0,0,0.87)',

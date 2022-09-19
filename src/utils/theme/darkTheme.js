@@ -17,6 +17,7 @@ const darkTheme = createTheme({
         background: {
             default: '#303030',
             paper: '#424242',
+            iconColor: '#fafafa'
         },
         text: {
             primary: '#ffffff',
