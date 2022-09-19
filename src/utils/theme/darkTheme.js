@@ -8,7 +8,8 @@ const darkTheme = createTheme({
             main: '#282831',
             iconColor: '#fafafa',
             contrastText: '#fafafa',
-            searchBar: 'rgba(250,250,250,0.2)'
+            searchBar: 'rgba(250,250,250,0.2)',
+            articleBackground: '#333333'
         },
         secondary: {
             main: '#de4747',
@@ -16,6 +17,7 @@ const darkTheme = createTheme({
         background: {
             default: '#303030',
             paper: '#424242',
+            iconColor: '#fafafa'
         },
         text: {
             primary: '#ffffff',

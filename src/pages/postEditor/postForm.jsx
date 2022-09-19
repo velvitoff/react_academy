@@ -3,14 +3,15 @@ import { useForm, Controller } from "react-hook-form";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-import { Alert, Box, Button } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
+import Alert from '@mui/material/Alert';
+import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import useLocalize from '../../hooks/useLocalize';
 import Snackbar from '@mui/material/Snackbar';
 
 import Localize from '../../components/common/localize';
 import './postEditor.css';
+import SubmitButton from './submitButton';
 
 export default function PostForm({ isEdit, publishCallback, initialData }) {
 
@@ -37,14 +38,15 @@ export default function PostForm({ isEdit, publishCallback, initialData }) {
 
     return (
         <>
-            <Box id="post-editor-wrap">
+            <Box id="post-editor-wrap" sx={{ backgroundColor: "primary.articleBackground" }}>
                 <Controller
                     name="title"
                     control={control}
                     render={({ field }) =>
                         <TextField {...field} label={titleLabel} variant="standard" />}
                 />
-
+                <Box sx={{mb:2}}/>
+                <SubmitButton isEdit={isEdit} onClick={handleSubmit(onSubmit)} />
                 <Box id="post-editor">
                     <Controller
                         name="content"
@@ -53,14 +55,7 @@ export default function PostForm({ isEdit, publishCallback, initialData }) {
                             <ReactQuill {...field} theme="snow" />}
                     />
                 </Box>
-
-                <Button
-                    onClick={handleSubmit(onSubmit)}
-                    variant="outlined"
-                    endIcon={<SendIcon />}
-                >
-                    <Localize input={isEdit ? "Edit article" : "Publish article"} />
-                </Button>
+                <SubmitButton isEdit={isEdit} onClick={handleSubmit(onSubmit)} />
             </Box >
 
             <Snackbar
