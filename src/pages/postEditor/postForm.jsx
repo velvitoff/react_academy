@@ -6,9 +6,10 @@ import 'react-quill/dist/quill.snow.css';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import useLocalize from '../../hooks/useLocalize';
 import Snackbar from '@mui/material/Snackbar';
+import Stack from '@mui/material/Stack';
 
+import useLocalize from '../../hooks/useLocalize';
 import Localize from '../../components/common/localize';
 import './postEditor.css';
 import SubmitButton from './submitButton';
@@ -39,14 +40,16 @@ export default function PostForm({ isEdit, publishCallback, initialData }) {
     return (
         <>
             <Box id="post-editor-wrap" sx={{ backgroundColor: "primary.articleBackground" }}>
-                <Controller
-                    name="title"
-                    control={control}
-                    render={({ field }) =>
-                        <TextField {...field} label={titleLabel} variant="standard" />}
-                />
-                <Box sx={{mb:2}}/>
-                <SubmitButton isEdit={isEdit} onClick={handleSubmit(onSubmit)} />
+                <Stack direction="row" spacing={1} alignItems="center" justifyContent="space-between">
+                    <Controller
+                        sx={{ flexGrow: 1 }}
+                        name="title"
+                        control={control}
+                        render={({ field }) =>
+                            <TextField {...field} label={titleLabel} variant="standard" sx={{width: '75%'}} />}
+                    />
+                    <SubmitButton isEdit={isEdit} onClick={handleSubmit(onSubmit)} />
+                </Stack>
                 <Box id="post-editor">
                     <Controller
                         name="content"

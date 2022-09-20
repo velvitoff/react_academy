@@ -1,3 +1,19 @@
+.ql-header > .ql-picker-label::before{
+    color: #ababab
+}
+
+.ql-header > .ql-picker-label > svg > polygon,
+.ql-bold > svg > .ql-stroke,
+.ql-italic > svg > .ql-stroke,
+.ql-underline > svg > .ql-stroke,
+.ql-link > svg > .ql-stroke,
+.ql-formats > .ql-list > svg > line,
+.ql-formats > .ql-list > svg > path,
+.ql-clean > svg > .ql-stroke {
+    stroke: #ababab;
+}
+
+
 #post-editor-wrap {
     display: flex;
     flex-direction: column;

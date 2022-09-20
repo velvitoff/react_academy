@@ -7,11 +7,9 @@
     margin-top: 5.5em;
     margin-left: auto;
     margin-right: auto;
-    padding: 20px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 1em;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 0.1em 0.4em;
 }
-
-
 
 .post > div > h1,
 .post > div > h2,
@@ -19,8 +17,10 @@
     text-align: center;
 }
 
-.post > figure > div > div img,
-.post > div > h1 > img {
+.post > figure > div > div > img,
+.post > div > h1 > img,
+.post > h1 > img,
+.post > img {
     display: block;
     margin-left: auto;
     margin-right: auto;
